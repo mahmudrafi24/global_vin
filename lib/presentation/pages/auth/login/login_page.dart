@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:core_kit/core_kit.dart';
 import 'package:get/get.dart';
 import 'package:global_vin/presentation/controllers/auth_controller.dart';
+import 'package:global_vin/presentation/pages/auth/login/login_binding.dart';
 import 'package:global_vin/routes/app_routes.dart';
 
 class LoginPage extends StatelessWidget {
@@ -9,6 +10,7 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    LoginBinding().dependencies();
     final controller = Get.find<AuthController>();
 
     return Scaffold(
@@ -22,13 +24,13 @@ class LoginPage extends StatelessWidget {
               children: [
                 60.height,
                 CommonText(
-                  'Welcome Back',
+                  text: 'Welcome Back',
                   fontSize: 28.sp,
                   fontWeight: FontWeight.bold,
                 ),
                 8.height,
                 CommonText(
-                  'Sign in to continue',
+                  text: 'Sign in to continue',
                   fontSize: 14.sp,
                 ),
                 40.height,
@@ -45,7 +47,7 @@ class LoginPage extends StatelessWidget {
                   labelText: 'Password',
                   hintText: 'Enter your password',
                   validationType: ValidationType.validatePassword,
-                  isPassword: true,
+                  // isPassword: true,
                   prefixIcon: const Icon(Icons.lock_outlined),
                 ),
                 24.height,
@@ -60,9 +62,9 @@ class LoginPage extends StatelessWidget {
                     return Padding(
                       padding: EdgeInsets.only(bottom: 16.h),
                       child: CommonText(
-                        controller.errorMessage.value,
+                        text: controller.errorMessage.value,
                         fontSize: 12.sp,
-                        color: Colors.red,
+                        textColor: Colors.red,
                         textAlign: TextAlign.center,
                       ),
                     );
@@ -72,7 +74,8 @@ class LoginPage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CommonText("Don't have an account? ", fontSize: 14.sp),
+                    CommonText(
+                        text: "Don't have an account? ", fontSize: 14.sp),
                     TextButton(
                       onPressed: () => Get.toNamed(AppRoutes.register),
                       child: const Text('Register'),

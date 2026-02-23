@@ -24,11 +24,10 @@ class Helpers {
     VoidCallback? onConfirm,
   }) {
     return CommonDialogWithActions(
-      context,
       title: title,
       subTitle: message,
-      confirmButtonTitle: confirmText,
-      cancelButtonTitle: cancelText,
+      content: [],
+      context: context,
       onConfirm: onConfirm ?? () {},
     );
   }

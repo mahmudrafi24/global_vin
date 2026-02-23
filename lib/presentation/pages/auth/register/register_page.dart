@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:core_kit/core_kit.dart';
 import 'package:get/get.dart';
 import 'package:global_vin/presentation/controllers/auth_controller.dart';
+import 'package:global_vin/presentation/pages/auth/register/register_binding.dart';
 import 'package:global_vin/routes/app_routes.dart';
 
 class RegisterPage extends StatelessWidget {
@@ -9,6 +10,7 @@ class RegisterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    RegisterBinding().dependencies();
     final controller = Get.find<AuthController>();
 
     return Scaffold(
@@ -23,13 +25,13 @@ class RegisterPage extends StatelessWidget {
               children: [
                 20.height,
                 CommonText(
-                  'Create Account',
+                  text: 'Create Account',
                   fontSize: 28.sp,
                   fontWeight: FontWeight.bold,
                 ),
                 8.height,
                 CommonText(
-                  'Fill in your details to get started',
+                  text: 'Fill in your details to get started',
                   fontSize: 14.sp,
                 ),
                 32.height,
@@ -54,7 +56,7 @@ class RegisterPage extends StatelessWidget {
                   labelText: 'Password',
                   hintText: 'Enter your password',
                   validationType: ValidationType.validatePassword,
-                  isPassword: true,
+                  //isPassword: true,
                   prefixIcon: const Icon(Icons.lock_outlined),
                 ),
                 16.height,
@@ -63,9 +65,7 @@ class RegisterPage extends StatelessWidget {
                   labelText: 'Confirm Password',
                   hintText: 'Confirm your password',
                   validationType: ValidationType.validateConfirmPassword,
-                  isPassword: true,
                   prefixIcon: const Icon(Icons.lock_outlined),
-                  confirmPasswordController: controller.registerPasswordController,
                 ),
                 24.height,
                 Obx(() => CommonButton(
@@ -79,9 +79,9 @@ class RegisterPage extends StatelessWidget {
                     return Padding(
                       padding: EdgeInsets.only(bottom: 16.h),
                       child: CommonText(
-                        controller.errorMessage.value,
+                        text: controller.errorMessage.value,
                         fontSize: 12.sp,
-                        color: Colors.red,
+                        textColor: Colors.red,
                         textAlign: TextAlign.center,
                       ),
                     );
@@ -91,9 +91,10 @@ class RegisterPage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CommonText('Already have an account? ', fontSize: 14.sp),
+                    CommonText(
+                        text: 'Already have an account? ', fontSize: 14.sp),
                     TextButton(
-                      onPressed: () => Get.back(),
+                      onPressed: () => Get.toNamed(AppRoutes.login),
                       child: const Text('Login'),
                     ),
                   ],

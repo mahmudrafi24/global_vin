@@ -22,11 +22,12 @@ class UserCard extends StatelessWidget {
           backgroundImage:
               user.avatarUrl != null ? NetworkImage(user.avatarUrl!) : null,
           child: user.avatarUrl == null
-              ? CommonText(user.name[0].toUpperCase(), fontWeight: FontWeight.bold)
+              ? CommonText(
+                  text: user.name[0].toUpperCase(), fontWeight: FontWeight.bold)
               : null,
         ),
-        title: CommonText(user.name, fontSize: 16.sp),
-        subtitle: CommonText(user.email, fontSize: 12.sp),
+        title: CommonText(text: user.name, fontSize: 16.sp),
+        subtitle: CommonText(text: user.email, fontSize: 12.sp),
         trailing: const Icon(Icons.chevron_right),
       ),
     );
