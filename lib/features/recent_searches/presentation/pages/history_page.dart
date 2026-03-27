@@ -7,6 +7,7 @@ import 'package:global_vin/core/constants/app_typography.dart';
 import 'package:global_vin/features/subscription/presentation/controllers/subscription_controller.dart';
 import 'package:global_vin/features/subscription/domain/entities/plan_entity.dart';
 import 'package:global_vin/features/vin_decoder/data/mock/mock_vin_data.dart';
+import 'package:global_vin/core/widgets/core_screen_utils.dart';
 import 'package:global_vin/routes/app_routes.dart';
 import '../controllers/recent_search_controller.dart';
 
@@ -32,20 +33,20 @@ class HistoryPage extends GetView<RecentSearchController> {
               return Container(
                 width: double.infinity,
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
                 margin:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
                 decoration: BoxDecoration(
                   color: AppColors.warning.withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(12.r),
                   border:
                       Border.all(color: AppColors.warning.withOpacity(0.3)),
                 ),
                 child: Row(
                   children: [
-                    const Icon(Icons.info_outline,
-                        color: AppColors.warning, size: 18),
-                    const SizedBox(width: 8),
+                    Icon(Icons.info_outline,
+                        color: AppColors.warning, size: 18.w),
+                    SizedBox(width: 8.w),
                     Expanded(
                       child: Text(
                         '$count/5 searches used — Upgrade for more',
@@ -81,13 +82,13 @@ class HistoryPage extends GetView<RecentSearchController> {
                     children: [
                       Icon(
                         Icons.history_rounded,
-                        size: 64,
+                        size: 64.w,
                         color: AppColors.textSecondary.withOpacity(0.3),
                       ),
-                      const SizedBox(height: 16),
+                      SizedBox(height: 16.h),
                       Text(AppStrings.emptyHistory,
                           style: AppTypography.heading4),
-                      const SizedBox(height: 8),
+                      SizedBox(height: 8.h),
                       Text(
                         'Start decoding VINs to build your history',
                         style: AppTypography.body,
@@ -98,7 +99,7 @@ class HistoryPage extends GetView<RecentSearchController> {
               }
 
               return ListView.builder(
-                padding: const EdgeInsets.all(16),
+                padding: EdgeInsets.all(16.w),
                 itemCount: searches.length,
                 itemBuilder: (context, index) {
                   final search = searches[index];
@@ -107,11 +108,11 @@ class HistoryPage extends GetView<RecentSearchController> {
                     direction: DismissDirection.endToStart,
                     background: Container(
                       alignment: Alignment.centerRight,
-                      padding: const EdgeInsets.only(right: 20),
-                      margin: const EdgeInsets.only(bottom: 12),
+                      padding: EdgeInsets.only(right: 20.w),
+                      margin: EdgeInsets.only(bottom: 12.h),
                       decoration: BoxDecoration(
                         color: AppColors.error.withOpacity(0.2),
-                        borderRadius: BorderRadius.circular(16),
+                        borderRadius: BorderRadius.circular(16.r),
                       ),
                       child: const Icon(Icons.delete_outline,
                           color: AppColors.error),
@@ -148,30 +149,30 @@ class HistoryPage extends GetView<RecentSearchController> {
                         Get.toNamed(AppRoutes.vinResult, arguments: vinData);
                       },
                       child: Container(
-                        margin: const EdgeInsets.only(bottom: 12),
-                        padding: const EdgeInsets.all(16),
+                        margin: EdgeInsets.only(bottom: 12.h),
+                        padding: EdgeInsets.all(16.w),
                         decoration: BoxDecoration(
                           color: AppColors.surface,
-                          borderRadius: BorderRadius.circular(16),
+                          borderRadius: BorderRadius.circular(16.r),
                           border: Border.all(
                               color: AppColors.divider.withOpacity(0.5)),
                         ),
                         child: Row(
                           children: [
                             Container(
-                              width: 44,
-                              height: 44,
+                              width: 44.w,
+                              height: 44.w,
                               decoration: BoxDecoration(
                                 color: AppColors.primary.withOpacity(0.1),
-                                borderRadius: BorderRadius.circular(12),
+                                borderRadius: BorderRadius.circular(12.r),
                               ),
-                              child: const Icon(
+                              child: Icon(
                                 Icons.directions_car_rounded,
                                 color: AppColors.primary,
-                                size: 22,
+                                size: 22.w,
                               ),
                             ),
-                            const SizedBox(width: 14),
+                            SizedBox(width: 14.w),
                             Expanded(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -180,7 +181,7 @@ class HistoryPage extends GetView<RecentSearchController> {
                                     '${search.make} ${search.model}',
                                     style: AppTypography.bodyBold,
                                   ),
-                                  const SizedBox(height: 4),
+                                  SizedBox(height: 4.h),
                                   Text(
                                     search.vin,
                                     style: AppTypography.vinSmall,
@@ -192,13 +193,13 @@ class HistoryPage extends GetView<RecentSearchController> {
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Container(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 8,
-                                    vertical: 2,
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 8.w,
+                                    vertical: 2.h,
                                   ),
                                   decoration: BoxDecoration(
                                     color: AppColors.primary.withOpacity(0.15),
-                                    borderRadius: BorderRadius.circular(20),
+                                    borderRadius: BorderRadius.circular(20.r),
                                   ),
                                   child: Text(
                                     search.year,
@@ -206,18 +207,18 @@ class HistoryPage extends GetView<RecentSearchController> {
                                         .copyWith(color: AppColors.primary),
                                   ),
                                 ),
-                                const SizedBox(height: 4),
+                                SizedBox(height: 4.h),
                                 Text(
                                   search.timeAgo,
                                   style: AppTypography.caption,
                                 ),
                               ],
                             ),
-                            const SizedBox(width: 8),
-                            const Icon(
+                            SizedBox(width: 8.w),
+                            Icon(
                               Icons.chevron_right_rounded,
                               color: AppColors.textSecondary,
-                              size: 20,
+                              size: 20.w,
                             ),
                           ],
                         ),

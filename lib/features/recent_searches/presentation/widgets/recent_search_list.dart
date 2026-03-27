@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:global_vin/core/constants/app_colors.dart';
 import 'package:global_vin/core/constants/app_typography.dart';
 import 'package:global_vin/features/vin_decoder/data/mock/mock_vin_data.dart';
+import 'package:global_vin/core/widgets/core_screen_utils.dart';
 import 'package:global_vin/routes/app_routes.dart';
 import '../controllers/recent_search_controller.dart';
 
@@ -17,9 +18,9 @@ class RecentSearchList extends GetView<RecentSearchController> {
       if (searches.isEmpty) {
         return Container(
           width: double.infinity,
-          padding: const EdgeInsets.all(24),
+          padding: EdgeInsets.all(24.w),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(16.r),
             border: Border.all(
               color: AppColors.divider,
               style: BorderStyle.solid,
@@ -29,10 +30,10 @@ class RecentSearchList extends GetView<RecentSearchController> {
             children: [
               Icon(
                 Icons.search_off_rounded,
-                size: 32,
+                size: 32.w,
                 color: AppColors.textSecondary.withOpacity(0.5),
               ),
-              const SizedBox(height: 8),
+              SizedBox(height: 8.h),
               Text(
                 'No recent searches yet',
                 style: AppTypography.bodySmall,
@@ -43,11 +44,11 @@ class RecentSearchList extends GetView<RecentSearchController> {
       }
 
       return SizedBox(
-        height: 110,
+        height: 110.h,
         child: ListView.separated(
           scrollDirection: Axis.horizontal,
           itemCount: searches.length > 5 ? 5 : searches.length,
-          separatorBuilder: (_, __) => const SizedBox(width: 12),
+          separatorBuilder: (_, __) => SizedBox(width: 12.w),
           itemBuilder: (context, index) {
             final search = searches[index];
             return GestureDetector(
@@ -56,11 +57,11 @@ class RecentSearchList extends GetView<RecentSearchController> {
                 Get.toNamed(AppRoutes.vinResult, arguments: vinData);
               },
               child: Container(
-                width: 200,
-                padding: const EdgeInsets.all(14),
+                width: 200.w,
+                padding: EdgeInsets.all(14.w),
                 decoration: BoxDecoration(
                   color: AppColors.surface,
-                  borderRadius: BorderRadius.circular(16),
+                  borderRadius: BorderRadius.circular(16.r),
                   border: Border.all(color: AppColors.divider.withOpacity(0.5)),
                 ),
                 child: Column(
@@ -78,13 +79,13 @@ class RecentSearchList extends GetView<RecentSearchController> {
                           ),
                         ),
                         Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 8,
-                            vertical: 2,
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 8.w,
+                            vertical: 2.h,
                           ),
                           decoration: BoxDecoration(
                             color: AppColors.primary.withOpacity(0.15),
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(20.r),
                           ),
                           child: Text(
                             search.year,

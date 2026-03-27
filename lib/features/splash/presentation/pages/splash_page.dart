@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
+import 'package:global_vin/core/widgets/common_image.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:global_vin/core/constants/app_colors.dart';
 import 'package:global_vin/core/utils/app_settings.dart';
+import 'package:global_vin/core/widgets/core_screen_utils.dart';
 import 'package:global_vin/routes/app_routes.dart';
 
 class SplashPage extends StatefulWidget {
@@ -17,7 +19,9 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
-    _navigate();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _navigate();
+    });
   }
 
   Future<void> _navigate() async {
@@ -32,6 +36,7 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
+    CoreScreenUtils.init(context);
     return Scaffold(
       backgroundColor: AppColors.background,
       body: Center(
@@ -40,25 +45,25 @@ class _SplashPageState extends State<SplashPage> {
           children: [
             // Car icon with gradient
             Container(
-              width: 100,
-              height: 100,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                gradient: AppColors.primaryGradient,
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColors.primary.withOpacity(0.3),
-                    blurRadius: 30,
-                    spreadRadius: 5,
-                  ),
-                ],
-              ),
-              child: const Icon(
-                Icons.directions_car_rounded,
-                size: 50,
-                color: Colors.white,
-              ),
-            )
+                    width: 100.w,
+                    height: 100.w,
+                    padding: EdgeInsets.all(20.w),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      gradient: AppColors.primaryGradient,
+                      boxShadow: [
+                        BoxShadow(
+                          color: AppColors.primary.withValues(alpha: .3),
+                          blurRadius: 30.r,
+                          spreadRadius: 5.r,
+                        ),
+                      ],
+                    ),
+                    child: CommonImage(
+                      src: "assets/images/GLOVIN logo.png",
+                      size: 50,
+                      imageColor: Colors.white,
+                    ))
                 .animate()
                 .scale(
                   begin: const Offset(0.5, 0.5),
@@ -67,7 +72,7 @@ class _SplashPageState extends State<SplashPage> {
                   curve: Curves.easeOutBack,
                 )
                 .fadeIn(duration: 400.ms),
-            const SizedBox(height: 24),
+            SizedBox(height: 24.h),
             // App name with gradient text
             ShaderMask(
               shaderCallback: (bounds) =>
@@ -75,7 +80,7 @@ class _SplashPageState extends State<SplashPage> {
               child: Text(
                 'VinDecode',
                 style: GoogleFonts.inter(
-                  fontSize: 36,
+                  fontSize: 36.sp,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),
@@ -84,17 +89,15 @@ class _SplashPageState extends State<SplashPage> {
                 .animate()
                 .fadeIn(delay: 300.ms, duration: 500.ms)
                 .slideY(begin: 0.3, end: 0, duration: 500.ms),
-            const SizedBox(height: 8),
+            SizedBox(height: 8.h),
             Text(
               'Decode Any Vehicle',
               style: GoogleFonts.inter(
-                fontSize: 14,
+                fontSize: 14.sp,
                 color: AppColors.textSecondary,
                 letterSpacing: 2,
               ),
-            )
-                .animate()
-                .fadeIn(delay: 600.ms, duration: 500.ms),
+            ).animate().fadeIn(delay: 600.ms, duration: 500.ms),
           ],
         ),
       ),

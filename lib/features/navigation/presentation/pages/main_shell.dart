@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:global_vin/core/constants/app_colors.dart';
 import 'package:global_vin/core/constants/app_typography.dart';
+import 'package:global_vin/core/widgets/core_screen_utils.dart';
 import 'package:global_vin/features/subscription/presentation/controllers/subscription_controller.dart';
 import 'package:global_vin/features/subscription/domain/entities/plan_entity.dart';
 import '../../../vin_decoder/presentation/pages/home_page.dart';
@@ -37,7 +38,7 @@ class MainShell extends GetView<NavigationController> {
           ),
           child: SafeArea(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+              padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -80,51 +81,51 @@ class MainShell extends GetView<NavigationController> {
       showModalBottomSheet(
         context: context,
         backgroundColor: AppColors.surface,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(24.r)),
         ),
         builder: (_) => Padding(
-          padding: const EdgeInsets.all(24),
+          padding: EdgeInsets.all(24.w),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               Container(
-                width: 40,
-                height: 4,
+                width: 40.w,
+                height: 4.h,
                 decoration: BoxDecoration(
                   color: AppColors.divider,
-                  borderRadius: BorderRadius.circular(2),
+                  borderRadius: BorderRadius.circular(2.r),
                 ),
               ),
-              const SizedBox(height: 24),
-              const Icon(
+              SizedBox(height: 24.h),
+              Icon(
                 Icons.star_rounded,
-                size: 48,
+                size: 48.w,
                 color: AppColors.gold,
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16.h),
               Text(
                 'Upgrade to Standard',
                 style: AppTypography.heading3,
               ),
-              const SizedBox(height: 8),
+              SizedBox(height: 8.h),
               Text(
                 'Save your favorite vehicles and access them anytime with Standard or Premium plan.',
                 style: AppTypography.body,
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 24),
+              SizedBox(height: 24.h),
               SizedBox(
                 width: double.infinity,
-                height: 48,
+                height: 48.h,
                 child: DecoratedBox(
                   decoration: BoxDecoration(
                     gradient: AppColors.primaryGradient,
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(12.r),
                   ),
                   child: MaterialButton(
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(12.r),
                     ),
                     onPressed: () {
                       Navigator.pop(context);
@@ -134,7 +135,7 @@ class MainShell extends GetView<NavigationController> {
                   ),
                 ),
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16.h),
             ],
           ),
         ),
@@ -158,12 +159,12 @@ class _FavoritesPlaceholder extends StatelessWidget {
           children: [
             Icon(
               Icons.star_border_rounded,
-              size: 64,
+              size: 64.w,
               color: AppColors.textSecondary.withOpacity(0.5),
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: 16.h),
             Text('No favorites yet', style: AppTypography.heading4),
-            const SizedBox(height: 8),
+            SizedBox(height: 8.h),
             Text(
               'Decode a VIN and save it to favorites',
               style: AppTypography.body,
@@ -196,23 +197,23 @@ class _NavItem extends StatelessWidget {
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
         padding: EdgeInsets.symmetric(
-          horizontal: isActive ? 16 : 12,
-          vertical: 8,
+          horizontal: isActive ? 16.w : 12.w,
+          vertical: 8.h,
         ),
         decoration: BoxDecoration(
           color: isActive ? AppColors.primary.withOpacity(0.15) : Colors.transparent,
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(20.r),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             Icon(
               icon,
-              size: 22,
+              size: 22.w,
               color: isActive ? AppColors.primary : AppColors.textSecondary,
             ),
             if (isActive) ...[
-              const SizedBox(width: 6),
+              SizedBox(width: 6.w),
               Text(
                 label,
                 style: AppTypography.bodySmall.copyWith(

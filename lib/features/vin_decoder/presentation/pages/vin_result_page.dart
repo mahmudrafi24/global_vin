@@ -7,6 +7,7 @@ import 'package:global_vin/core/constants/app_strings.dart';
 import 'package:global_vin/core/constants/app_typography.dart';
 import 'package:global_vin/features/subscription/presentation/controllers/subscription_controller.dart';
 import 'package:global_vin/features/subscription/domain/entities/plan_entity.dart';
+import 'package:global_vin/core/widgets/core_screen_utils.dart';
 import 'package:global_vin/routes/app_routes.dart';
 import '../../domain/entities/vin_entity.dart';
 
@@ -40,7 +41,7 @@ class VinResultPage extends StatelessWidget {
           headerSliverBuilder: (context, innerBoxIsScrolled) => [
             SliverAppBar(
               backgroundColor: AppColors.background,
-              expandedHeight: 200,
+              expandedHeight: 200.h,
               pinned: true,
               leading: IconButton(
                 onPressed: () => Get.back(),
@@ -49,7 +50,7 @@ class VinResultPage extends StatelessWidget {
               flexibleSpace: FlexibleSpaceBar(
                 background: SafeArea(
                   child: Padding(
-                    padding: const EdgeInsets.fromLTRB(56, 8, 20, 0),
+                    padding: EdgeInsets.fromLTRB(56.w, 8.h, 20.w, 0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -57,7 +58,7 @@ class VinResultPage extends StatelessWidget {
                           vehicle.vin,
                           style: AppTypography.vinSmall,
                         ),
-                        const SizedBox(height: 8),
+                        SizedBox(height: 8.h),
                         Text(
                           '${vehicle.year} ${vehicle.make}',
                           style: AppTypography.heading2,
@@ -67,25 +68,25 @@ class VinResultPage extends StatelessWidget {
                           style: AppTypography.heading1
                               .copyWith(color: AppColors.primary),
                         ),
-                        const SizedBox(height: 8),
+                        SizedBox(height: 8.h),
                         Row(
                           children: [
                             Text(
                               _countryFlag(vehicle.country),
-                              style: const TextStyle(fontSize: 18),
+                              style: TextStyle(fontSize: 18.sp),
                             ),
-                            const SizedBox(width: 6),
+                            SizedBox(width: 6.w),
                             Text(
                               vehicle.country,
                               style: AppTypography.body,
                             ),
-                            const SizedBox(width: 12),
+                            SizedBox(width: 12.w),
                             Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 4),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 10.w, vertical: 4.h),
                               decoration: BoxDecoration(
                                 color: AppColors.primary.withOpacity(0.15),
-                                borderRadius: BorderRadius.circular(20),
+                                borderRadius: BorderRadius.circular(20.r),
                               ),
                               child: Text(
                                 vehicle.vehicleType,
@@ -121,7 +122,7 @@ class VinResultPage extends StatelessWidget {
           ),
         ),
         bottomNavigationBar: Container(
-          padding: const EdgeInsets.fromLTRB(20, 12, 20, 24),
+          padding: EdgeInsets.fromLTRB(20.w, 12.h, 20.w, 24.h),
           decoration: const BoxDecoration(
             color: AppColors.surface,
             border: Border(
@@ -146,7 +147,7 @@ class VinResultPage extends StatelessWidget {
                   },
                 ),
               ),
-              const SizedBox(width: 12),
+              SizedBox(width: 12.w),
               Expanded(
                 child: _ActionButton(
                   icon: Icons.share_rounded,
@@ -187,17 +188,17 @@ class _ActionButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 12),
+        padding: EdgeInsets.symmetric(vertical: 12.h),
         decoration: BoxDecoration(
           color: AppColors.surfaceLight,
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(12.r),
           border: Border.all(color: AppColors.divider),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(icon, size: 20, color: AppColors.textSecondary),
-            const SizedBox(width: 8),
+            Icon(icon, size: 20.w, color: AppColors.textSecondary),
+            SizedBox(width: 8.w),
             Text(label, style: AppTypography.bodyBold),
           ],
         ),
@@ -214,12 +215,12 @@ class _OverviewTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: const EdgeInsets.all(20),
+      padding: EdgeInsets.all(20.w),
       child: Column(
         children: [
           // Vehicle image placeholder
           Container(
-            height: 180,
+            height: 180.h,
             width: double.infinity,
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -228,7 +229,7 @@ class _OverviewTab extends StatelessWidget {
                   AppColors.primaryDark.withOpacity(0.1),
                 ],
               ),
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(16.r),
               border: Border.all(color: AppColors.divider),
             ),
             child: Column(
@@ -236,10 +237,10 @@ class _OverviewTab extends StatelessWidget {
               children: [
                 Icon(
                   _vehicleIcon(vehicle.bodyType),
-                  size: 64,
+                  size: 64.w,
                   color: AppColors.primary.withOpacity(0.6),
                 ),
-                const SizedBox(height: 8),
+                SizedBox(height: 8.h),
                 Text(
                   '${vehicle.year} ${vehicle.make} ${vehicle.model}',
                   style: AppTypography.body.copyWith(color: AppColors.primary),
@@ -247,14 +248,14 @@ class _OverviewTab extends StatelessWidget {
               ],
             ),
           ).animate().fadeIn(duration: 400.ms),
-          const SizedBox(height: 20),
+          SizedBox(height: 20.h),
           // Info grid
           GridView.count(
             crossAxisCount: 2,
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            mainAxisSpacing: 12,
-            crossAxisSpacing: 12,
+            mainAxisSpacing: 12.h,
+            crossAxisSpacing: 12.w,
             childAspectRatio: 1.6,
             children: [
               _InfoCard(
@@ -308,29 +309,29 @@ class _InfoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(16),
+      borderRadius: BorderRadius.circular(16.r),
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
         child: Container(
-          padding: const EdgeInsets.all(14),
+          padding: EdgeInsets.all(14.w),
           decoration: BoxDecoration(
             color: AppColors.surface.withOpacity(0.7),
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(16.r),
             border: Border.all(color: AppColors.divider.withOpacity(0.5)),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Icon(icon, size: 18, color: AppColors.primary),
+              Icon(icon, size: 18.w, color: AppColors.primary),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(label, style: AppTypography.caption),
-                  const SizedBox(height: 2),
+                  SizedBox(height: 2.h),
                   Text(
                     value,
-                    style: AppTypography.bodyBold.copyWith(fontSize: 13),
+                    style: AppTypography.bodyBold.copyWith(fontSize: 13.sp),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -352,7 +353,7 @@ class _SpecificationsTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: const EdgeInsets.all(20),
+      padding: EdgeInsets.all(20.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -396,9 +397,9 @@ class _SpecSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(title, style: AppTypography.heading4),
-        const SizedBox(height: 12),
+        SizedBox(height: 12.h),
         ...specs,
-        const SizedBox(height: 20),
+        SizedBox(height: 20.h),
       ],
     ).animate().fadeIn(duration: 300.ms);
   }
@@ -413,7 +414,7 @@ class _SpecRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+      padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 16.w),
       decoration: BoxDecoration(
         border: Border(
           bottom: BorderSide(color: AppColors.divider.withOpacity(0.5)),
@@ -444,11 +445,11 @@ class _EquipmentTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      padding: const EdgeInsets.all(20),
+      padding: EdgeInsets.all(20.w),
       itemCount: vehicle.equipment.length,
       itemBuilder: (context, index) {
         return Container(
-          padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
+          padding: EdgeInsets.symmetric(vertical: 14.h, horizontal: 16.w),
           decoration: BoxDecoration(
             border: Border(
               bottom: BorderSide(color: AppColors.divider.withOpacity(0.3)),
@@ -456,8 +457,8 @@ class _EquipmentTab extends StatelessWidget {
           ),
           child: Row(
             children: [
-              const Icon(Icons.check_circle, color: AppColors.success, size: 20),
-              const SizedBox(width: 12),
+              Icon(Icons.check_circle, color: AppColors.success, size: 20.w),
+              SizedBox(width: 12.w),
               Expanded(
                 child: Text(
                   vehicle.equipment[index],
@@ -505,16 +506,16 @@ class _LockedContent extends StatelessWidget {
         Opacity(
           opacity: 0.3,
           child: Padding(
-            padding: const EdgeInsets.all(20),
+            padding: EdgeInsets.all(20.w),
             child: Column(
               children: List.generate(
                 6,
                 (_) => Container(
-                  height: 50,
-                  margin: const EdgeInsets.only(bottom: 8),
+                  height: 50.h,
+                  margin: EdgeInsets.only(bottom: 8.h),
                   decoration: BoxDecoration(
                     color: AppColors.surfaceLight,
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius: BorderRadius.circular(8.r),
                   ),
                 ),
               ),
@@ -524,42 +525,42 @@ class _LockedContent extends StatelessWidget {
         // Lock overlay
         Center(
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(20.r),
             child: BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
               child: Container(
-                padding: const EdgeInsets.all(32),
+                padding: EdgeInsets.all(32.w),
                 decoration: BoxDecoration(
                   color: AppColors.surface.withOpacity(0.9),
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(20.r),
                   border: Border.all(color: AppColors.divider),
                 ),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Icon(Icons.lock_rounded,
-                        size: 48, color: AppColors.textSecondary),
-                    const SizedBox(height: 16),
+                    Icon(Icons.lock_rounded,
+                        size: 48.w, color: AppColors.textSecondary),
+                    SizedBox(height: 16.h),
                     Text('Safety Data Locked',
                         style: AppTypography.heading4),
-                    const SizedBox(height: 8),
+                    SizedBox(height: 8.h),
                     Text(
                       'Upgrade to Standard or Premium\nto access safety ratings',
                       style: AppTypography.body,
                       textAlign: TextAlign.center,
                     ),
-                    const SizedBox(height: 20),
+                    SizedBox(height: 20.h),
                     SizedBox(
-                      width: 200,
-                      height: 44,
+                      width: 200.w,
+                      height: 44.h,
                       child: DecoratedBox(
                         decoration: BoxDecoration(
                           gradient: AppColors.primaryGradient,
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(12.r),
                         ),
                         child: MaterialButton(
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
+                            borderRadius: BorderRadius.circular(12.r),
                           ),
                           onPressed: () => Get.toNamed(AppRoutes.subscription),
                           child: Text('Upgrade to Standard',
@@ -585,14 +586,14 @@ class _UnlockedSafety extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: const EdgeInsets.all(20),
+      padding: EdgeInsets.all(20.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Safety rating badge
           Container(
             width: double.infinity,
-            padding: const EdgeInsets.all(20),
+            padding: EdgeInsets.all(20.w),
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
@@ -600,7 +601,7 @@ class _UnlockedSafety extends StatelessWidget {
                   AppColors.success.withOpacity(0.05),
                 ],
               ),
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(16.r),
               border: Border.all(color: AppColors.success.withOpacity(0.3)),
             ),
             child: Column(
@@ -613,11 +614,11 @@ class _UnlockedSafety extends StatelessWidget {
                     return Icon(
                       i < stars ? Icons.star_rounded : Icons.star_border_rounded,
                       color: AppColors.gold,
-                      size: 32,
+                      size: 32.w,
                     );
                   }),
                 ),
-                const SizedBox(height: 8),
+                SizedBox(height: 8.h),
                 Text(
                   vehicle.safetyRating,
                   style: AppTypography.heading4
@@ -629,13 +630,13 @@ class _UnlockedSafety extends StatelessWidget {
                 begin: const Offset(0.95, 0.95),
                 end: const Offset(1.0, 1.0),
               ),
-          const SizedBox(height: 24),
+          SizedBox(height: 24.h),
           Text('Safety Features', style: AppTypography.heading4),
-          const SizedBox(height: 12),
+          SizedBox(height: 12.h),
           ...vehicle.safetyFeatures.asMap().entries.map(
                 (entry) => Container(
                   padding:
-                      const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
+                      EdgeInsets.symmetric(vertical: 14.h, horizontal: 16.w),
                   decoration: BoxDecoration(
                     border: Border(
                       bottom:
@@ -644,9 +645,9 @@ class _UnlockedSafety extends StatelessWidget {
                   ),
                   child: Row(
                     children: [
-                      const Icon(Icons.shield,
-                          color: AppColors.success, size: 20),
-                      const SizedBox(width: 12),
+                      Icon(Icons.shield,
+                          color: AppColors.success, size: 20.w),
+                      SizedBox(width: 12.w),
                       Expanded(
                         child: Text(
                           entry.value,

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:global_vin/core/constants/app_colors.dart';
 import 'package:global_vin/core/constants/app_strings.dart';
 import 'package:global_vin/core/constants/app_typography.dart';
+import 'package:global_vin/core/widgets/core_screen_utils.dart';
 import '../../domain/entities/plan_entity.dart';
 import '../controllers/subscription_controller.dart';
 
@@ -22,28 +23,28 @@ class SubscriptionPage extends GetView<SubscriptionController> {
         ),
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: EdgeInsets.symmetric(horizontal: 20.w),
         child: Column(
           children: [
             // Header
             Text(AppStrings.choosePlan, style: AppTypography.heading1)
                 .animate()
                 .fadeIn(duration: 400.ms),
-            const SizedBox(height: 8),
+            SizedBox(height: 8.h),
             Text(
               AppStrings.unlockPower,
               style: AppTypography.body,
               textAlign: TextAlign.center,
             ).animate().fadeIn(delay: 100.ms, duration: 400.ms),
-            const SizedBox(height: 24),
+            SizedBox(height: 24.h),
 
             // Billing toggle
             Obx(
               () => Container(
-                padding: const EdgeInsets.all(4),
+                padding: EdgeInsets.all(4.w),
                 decoration: BoxDecoration(
                   color: AppColors.surfaceLight,
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(12.r),
                 ),
                 child: Row(
                   children: [
@@ -55,12 +56,12 @@ class SubscriptionPage extends GetView<SubscriptionController> {
                           }
                         },
                         child: Container(
-                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          padding: EdgeInsets.symmetric(vertical: 10.h),
                           decoration: BoxDecoration(
                             color: !controller.isYearly.value
                                 ? AppColors.primary
                                 : Colors.transparent,
-                            borderRadius: BorderRadius.circular(10),
+                            borderRadius: BorderRadius.circular(10.r),
                           ),
                           child: Text(
                             'Monthly',
@@ -82,12 +83,12 @@ class SubscriptionPage extends GetView<SubscriptionController> {
                           }
                         },
                         child: Container(
-                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          padding: EdgeInsets.symmetric(vertical: 10.h),
                           decoration: BoxDecoration(
                             color: controller.isYearly.value
                                 ? AppColors.primary
                                 : Colors.transparent,
-                            borderRadius: BorderRadius.circular(10),
+                            borderRadius: BorderRadius.circular(10.r),
                           ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -100,18 +101,18 @@ class SubscriptionPage extends GetView<SubscriptionController> {
                                       : AppColors.textSecondary,
                                 ),
                               ),
-                              const SizedBox(width: 6),
+                              SizedBox(width: 6.w),
                               Container(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 6, vertical: 2),
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 6.w, vertical: 2.h),
                                 decoration: BoxDecoration(
                                   color: AppColors.success,
-                                  borderRadius: BorderRadius.circular(6),
+                                  borderRadius: BorderRadius.circular(6.r),
                                 ),
                                 child: Text(
                                   'Save 30%',
                                   style: AppTypography.caption
-                                      .copyWith(color: Colors.white, fontSize: 9),
+                                      .copyWith(color: Colors.white, fontSize: 9.sp),
                                 ),
                               ),
                             ],
@@ -124,7 +125,7 @@ class SubscriptionPage extends GetView<SubscriptionController> {
               ),
             ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
 
-            const SizedBox(height: 24),
+            SizedBox(height: 24.h),
 
             // Plan cards
             ...PlanEntity.plans.asMap().entries.map(
@@ -145,14 +146,14 @@ class SubscriptionPage extends GetView<SubscriptionController> {
                       .slideY(begin: 0.1, end: 0),
                 ),
 
-            const SizedBox(height: 20),
+            SizedBox(height: 20.h),
 
             // Bottom note
             Text(
               AppStrings.cancelAnytime,
               style: AppTypography.bodySmall,
             ),
-            const SizedBox(height: 32),
+            SizedBox(height: 32.h),
           ],
         ),
       ),
@@ -165,30 +166,30 @@ class SubscriptionPage extends GetView<SubscriptionController> {
     showModalBottomSheet(
       context: context,
       backgroundColor: AppColors.surface,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24.r)),
       ),
       builder: (_) => Padding(
-        padding: const EdgeInsets.all(24),
+        padding: EdgeInsets.all(24.w),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              width: 40,
-              height: 4,
+              width: 40.w,
+              height: 4.h,
               decoration: BoxDecoration(
                 color: AppColors.divider,
-                borderRadius: BorderRadius.circular(2),
+                borderRadius: BorderRadius.circular(2.r),
               ),
             ),
-            const SizedBox(height: 24),
+            SizedBox(height: 24.h),
             Text('Confirm Plan', style: AppTypography.heading3),
-            const SizedBox(height: 16),
+            SizedBox(height: 16.h),
             Container(
-              padding: const EdgeInsets.all(16),
+              padding: EdgeInsets.all(16.w),
               decoration: BoxDecoration(
                 color: AppColors.surfaceLight,
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(12.r),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -214,18 +215,18 @@ class SubscriptionPage extends GetView<SubscriptionController> {
                 ],
               ),
             ),
-            const SizedBox(height: 24),
+            SizedBox(height: 24.h),
             SizedBox(
               width: double.infinity,
-              height: 52,
+              height: 52.h,
               child: DecoratedBox(
                 decoration: BoxDecoration(
                   gradient: AppColors.primaryGradient,
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(12.r),
                 ),
                 child: MaterialButton(
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(12.r),
                   ),
                   onPressed: () {
                     controller.upgradePlan(plan.type);
@@ -243,7 +244,7 @@ class SubscriptionPage extends GetView<SubscriptionController> {
                 ),
               ),
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: 16.h),
           ],
         ),
       ),
@@ -275,11 +276,11 @@ class _PlanCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      margin: const EdgeInsets.only(bottom: 16),
-      padding: const EdgeInsets.all(20),
+      margin: EdgeInsets.only(bottom: 16.h),
+      padding: EdgeInsets.all(20.w),
       decoration: BoxDecoration(
         color: AppColors.surface,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(16.r),
         border: Border.all(color: _borderColor, width: isCurrentPlan ? 2 : 1),
         boxShadow: isCurrentPlan
             ? [
@@ -300,14 +301,14 @@ class _PlanCard extends StatelessWidget {
               Text(plan.name, style: AppTypography.heading3),
               Container(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                    EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
                 decoration: BoxDecoration(
                   color: plan.type == PlanType.premium
                       ? AppColors.gold.withOpacity(0.2)
                       : plan.type == PlanType.standard
                           ? AppColors.primary.withOpacity(0.2)
                           : AppColors.surfaceLight,
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(20.r),
                 ),
                 child: Text(
                   plan.badge,
@@ -323,23 +324,23 @@ class _PlanCard extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 4),
+          SizedBox(height: 4.h),
           Text(
             isYearly ? plan.yearlyPrice : plan.monthlyPrice,
             style: AppTypography.heading2.copyWith(color: AppColors.primary),
           ),
           if (isYearly && plan.type != PlanType.basic)
             Text('billed annually', style: AppTypography.caption),
-          const SizedBox(height: 16),
+          SizedBox(height: 16.h),
           // Features
           ...plan.features.map(
             (f) => Padding(
-              padding: const EdgeInsets.only(bottom: 8),
+              padding: EdgeInsets.only(bottom: 8.h),
               child: Row(
                 children: [
-                  const Icon(Icons.check_circle,
-                      size: 16, color: AppColors.success),
-                  const SizedBox(width: 8),
+                  Icon(Icons.check_circle,
+                      size: 16.w, color: AppColors.success),
+                  SizedBox(width: 8.w),
                   Text(f, style: AppTypography.body),
                 ],
               ),
@@ -347,12 +348,12 @@ class _PlanCard extends StatelessWidget {
           ),
           ...plan.disabledFeatures.map(
             (f) => Padding(
-              padding: const EdgeInsets.only(bottom: 8),
+              padding: EdgeInsets.only(bottom: 8.h),
               child: Row(
                 children: [
                   Icon(Icons.cancel,
-                      size: 16, color: AppColors.textSecondary.withOpacity(0.5)),
-                  const SizedBox(width: 8),
+                      size: 16.w, color: AppColors.textSecondary.withOpacity(0.5)),
+                  SizedBox(width: 8.w),
                   Text(
                     f,
                     style: AppTypography.body.copyWith(
@@ -363,16 +364,16 @@ class _PlanCard extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(height: 16),
+          SizedBox(height: 16.h),
           // CTA
           SizedBox(
             width: double.infinity,
-            height: 44,
+            height: 44.h,
             child: isCurrentPlan
                 ? Container(
                     decoration: BoxDecoration(
                       color: AppColors.surfaceLight,
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(12.r),
                     ),
                     child: Center(
                       child: Text(
@@ -387,11 +388,11 @@ class _PlanCard extends StatelessWidget {
                       gradient: plan.type == PlanType.premium
                           ? AppColors.goldGradient
                           : AppColors.primaryGradient,
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(12.r),
                     ),
                     child: MaterialButton(
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(12.r),
                       ),
                       onPressed: onSelect,
                       child: Text(

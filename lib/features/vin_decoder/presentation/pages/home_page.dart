@@ -6,10 +6,12 @@ import 'package:global_vin/core/constants/app_colors.dart';
 import 'package:global_vin/core/constants/app_strings.dart';
 import 'package:global_vin/core/constants/app_typography.dart';
 import 'package:global_vin/core/widgets/glassmorphism_card.dart';
+import 'package:global_vin/core/widgets/core_screen_utils.dart';
 import 'package:global_vin/core/widgets/gradient_button.dart';
 import 'package:global_vin/features/profile/presentation/controllers/profile_controller.dart';
 import 'package:global_vin/features/recent_searches/presentation/widgets/recent_search_list.dart';
 import 'package:global_vin/features/navigation/presentation/controllers/navigation_controller.dart';
+import '../../../../core/widgets/common_image.dart';
 import '../controllers/vin_controller.dart';
 
 class HomePage extends GetView<VinController> {
@@ -28,11 +30,11 @@ class HomePage extends GetView<VinController> {
       backgroundColor: AppColors.background,
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.symmetric(horizontal: 20.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 16),
+              SizedBox(height: 16.h),
               // App bar
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -40,19 +42,19 @@ class HomePage extends GetView<VinController> {
                   Row(
                     children: [
                       Container(
-                        width: 36,
-                        height: 36,
-                        decoration: BoxDecoration(
-                          gradient: AppColors.primaryGradient,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: const Icon(
-                          Icons.directions_car_rounded,
-                          color: Colors.white,
-                          size: 20,
-                        ),
-                      ),
-                      const SizedBox(width: 10),
+                          width: 36.w,
+                          height: 36.w,
+                          padding: EdgeInsets.all(7.w),
+                          decoration: BoxDecoration(
+                            gradient: AppColors.primaryGradient,
+                            borderRadius: BorderRadius.circular(10.r),
+                          ),
+                          child: const CommonImage(
+                            src: "assets/images/GLOVIN logo.png",
+                            size: 20,
+                            imageColor: Colors.white,
+                          )),
+                      SizedBox(width: 10.w),
                       ShaderMask(
                         shaderCallback: (bounds) =>
                             AppColors.primaryGradient.createShader(bounds),
@@ -74,7 +76,7 @@ class HomePage extends GetView<VinController> {
                 ],
               ).animate().fadeIn(duration: 400.ms),
 
-              const SizedBox(height: 24),
+              SizedBox(height: 24.h),
 
               // Greeting
               Obx(() {
@@ -86,16 +88,16 @@ class HomePage extends GetView<VinController> {
                       '${_greeting()} 👋',
                       style: AppTypography.heading2,
                     ),
-                    const SizedBox(height: 4),
+                    SizedBox(height: 4.h),
                     Text(
                       profile.name,
-                      style: AppTypography.body.copyWith(fontSize: 16),
+                      style: AppTypography.body.copyWith(fontSize: 16.sp),
                     ),
                   ],
                 );
               }).animate().fadeIn(delay: 100.ms, duration: 400.ms),
 
-              const SizedBox(height: 28),
+              SizedBox(height: 28.h),
 
               // VIN Search Card
               _VinSearchCard(controller: controller)
@@ -103,21 +105,21 @@ class HomePage extends GetView<VinController> {
                   .fadeIn(delay: 200.ms, duration: 500.ms)
                   .slideY(begin: 0.1, end: 0),
 
-              const SizedBox(height: 28),
+              SizedBox(height: 28.h),
 
               // Recent Searches
               const _RecentSearchesSection()
                   .animate()
                   .fadeIn(delay: 300.ms, duration: 500.ms),
 
-              const SizedBox(height: 28),
+              SizedBox(height: 28.h),
 
               // Quick Stats
               const _QuickStatsRow()
                   .animate()
                   .fadeIn(delay: 400.ms, duration: 500.ms),
 
-              const SizedBox(height: 24),
+              SizedBox(height: 24.h),
             ],
           ),
         ),
@@ -134,18 +136,18 @@ class _VinSearchCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GlassmorphismCard(
-      borderColor: AppColors.primary.withOpacity(0.2),
-      padding: const EdgeInsets.all(20),
+      borderColor: AppColors.primary.withValues(alpha: 0.2),
+      padding: EdgeInsets.all(20.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(AppStrings.enterVin, style: AppTypography.heading4),
-          const SizedBox(height: 4),
+          SizedBox(height: 4.h),
           Text(
             'Enter a 17-character Vehicle Identification Number',
             style: AppTypography.bodySmall,
           ),
-          const SizedBox(height: 16),
+          SizedBox(height: 16.h),
           // VIN Input
           Obx(() {
             final vin = controller.inputVin.value;
@@ -164,14 +166,14 @@ class _VinSearchCard extends StatelessWidget {
               children: [
                 Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(12.r),
                     boxShadow: vin.isNotEmpty
                         ? [
                             BoxShadow(
                               color: isValid
-                                  ? AppColors.success.withOpacity(0.2)
-                                  : vin.length > 0
-                                      ? AppColors.primary.withOpacity(0.2)
+                                  ? AppColors.success.withValues(alpha: 0.2)
+                                  : vin.isNotEmpty
+                                      ? AppColors.primary.withValues(alpha: 0.2)
                                       : Colors.transparent,
                               blurRadius: 12,
                               spreadRadius: 0,
@@ -191,30 +193,30 @@ class _VinSearchCard extends StatelessWidget {
                     ],
                     decoration: InputDecoration(
                       hintText: 'e.g. 1HGBH41JXMN109186',
-                      hintStyle: AppTypography.vinSmall
-                          .copyWith(color: AppColors.textSecondary.withOpacity(0.5)),
+                      hintStyle: AppTypography.vinSmall.copyWith(
+                          color:
+                              AppColors.textSecondary.withValues(alpha: 0.5)),
                       counterText: '',
                       filled: true,
                       fillColor: AppColors.surfaceLight,
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(12.r),
                         borderSide: BorderSide(color: borderColor),
                       ),
                       enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(12.r),
                         borderSide: BorderSide(color: borderColor),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide:
-                            BorderSide(color: borderColor, width: 1.5),
+                        borderRadius: BorderRadius.circular(12.r),
+                        borderSide: BorderSide(color: borderColor, width: 1.5),
                       ),
                       suffixIcon: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           if (isValid)
-                            const Icon(Icons.check_circle,
-                                color: AppColors.success, size: 20),
+                            Icon(Icons.check_circle,
+                                color: AppColors.success, size: 20.w),
                           IconButton(
                             onPressed: () {
                               Get.snackbar(
@@ -223,13 +225,13 @@ class _VinSearchCard extends StatelessWidget {
                                 snackPosition: SnackPosition.BOTTOM,
                                 backgroundColor: AppColors.surfaceLight,
                                 colorText: AppColors.textPrimary,
-                                margin: const EdgeInsets.all(16),
+                                margin: EdgeInsets.all(16.w),
                               );
                             },
-                            icon: const Icon(
+                            icon: Icon(
                               Icons.camera_alt_outlined,
                               color: AppColors.textSecondary,
-                              size: 20,
+                              size: 20.w,
                             ),
                           ),
                         ],
@@ -237,7 +239,7 @@ class _VinSearchCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 8),
+                SizedBox(height: 8.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -252,7 +254,9 @@ class _VinSearchCard extends StatelessWidget {
                     Text(
                       '${vin.length} / 17',
                       style: AppTypography.caption.copyWith(
-                        color: isValid ? AppColors.success : AppColors.textSecondary,
+                        color: isValid
+                            ? AppColors.success
+                            : AppColors.textSecondary,
                       ),
                     ),
                   ],
@@ -260,7 +264,7 @@ class _VinSearchCard extends StatelessWidget {
               ],
             );
           }),
-          const SizedBox(height: 16),
+          SizedBox(height: 16.h),
           // Decode button
           Obx(
             () => GradientButton(
@@ -275,7 +279,7 @@ class _VinSearchCard extends StatelessWidget {
           Obx(() {
             if (controller.errorMessage.value.isNotEmpty) {
               return Padding(
-                padding: const EdgeInsets.only(top: 12),
+                padding: EdgeInsets.only(top: 12.h),
                 child: Text(
                   controller.errorMessage.value,
                   style:
@@ -309,13 +313,13 @@ class _RecentSearchesSection extends StatelessWidget {
               },
               child: Text(
                 AppStrings.seeAll,
-                style: AppTypography.bodySmall
-                    .copyWith(color: AppColors.primary),
+                style:
+                    AppTypography.bodySmall.copyWith(color: AppColors.primary),
               ),
             ),
           ],
         ),
-        const SizedBox(height: 12),
+        SizedBox(height: 12.h),
         const RecentSearchList(),
       ],
     );
@@ -329,11 +333,12 @@ class _QuickStatsRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        _StatChip(icon: Icons.pin_outlined, label: AppStrings.stat17Chars),
-        const SizedBox(width: 8),
-        _StatChip(icon: Icons.public, label: AppStrings.statGlobalDb),
-        const SizedBox(width: 8),
-        _StatChip(icon: Icons.bolt, label: AppStrings.statInstant),
+        const _StatChip(
+            icon: Icons.pin_outlined, label: AppStrings.stat17Chars),
+        SizedBox(width: 8.w),
+        const _StatChip(icon: Icons.public, label: AppStrings.statGlobalDb),
+        SizedBox(width: 8.w),
+        const _StatChip(icon: Icons.bolt, label: AppStrings.statInstant),
       ],
     );
   }
@@ -349,16 +354,16 @@ class _StatChip extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+        padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 8.w),
         decoration: BoxDecoration(
           color: AppColors.surfaceLight,
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(12.r),
           border: Border.all(color: AppColors.divider.withOpacity(0.5)),
         ),
         child: Column(
           children: [
-            Icon(icon, size: 20, color: AppColors.primary),
-            const SizedBox(height: 6),
+            Icon(icon, size: 20.w, color: AppColors.primary),
+            SizedBox(height: 6.h),
             Text(
               label,
               style: AppTypography.caption.copyWith(

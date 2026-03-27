@@ -7,6 +7,7 @@ import 'package:global_vin/core/constants/app_typography.dart';
 import 'package:global_vin/core/utils/app_settings.dart';
 import 'package:global_vin/features/subscription/presentation/controllers/subscription_controller.dart';
 import 'package:global_vin/features/subscription/domain/entities/plan_entity.dart';
+import 'package:global_vin/core/widgets/core_screen_utils.dart';
 import 'package:global_vin/routes/app_routes.dart';
 import '../controllers/profile_controller.dart';
 
@@ -32,10 +33,10 @@ class ProfilePage extends GetView<ProfileController> {
       backgroundColor: AppColors.background,
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.symmetric(horizontal: 20.w),
           child: Column(
             children: [
-              const SizedBox(height: 24),
+              SizedBox(height: 24.h),
               // Profile Header
               Obx(() {
                 final profile = controller.profile.value;
@@ -44,8 +45,8 @@ class ProfilePage extends GetView<ProfileController> {
                   children: [
                     // Avatar
                     Container(
-                      width: 80,
-                      height: 80,
+                      width: 80.w,
+                      height: 80.w,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         gradient: AppColors.primaryGradient,
@@ -54,22 +55,22 @@ class ProfilePage extends GetView<ProfileController> {
                         child: Text(
                           profile.initials,
                           style: AppTypography.heading1
-                              .copyWith(fontSize: 28, color: Colors.white),
+                              .copyWith(fontSize: 28.sp, color: Colors.white),
                         ),
                       ),
                     ),
-                    const SizedBox(height: 16),
+                    SizedBox(height: 16.h),
                     Text(profile.name, style: AppTypography.heading2),
-                    const SizedBox(height: 4),
+                    SizedBox(height: 4.h),
                     Text(profile.email, style: AppTypography.body),
-                    const SizedBox(height: 12),
+                    SizedBox(height: 12.h),
                     // Plan badge
                     Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 14, vertical: 6),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 14.w, vertical: 6.h),
                       decoration: BoxDecoration(
                         color: _planColor(plan).withOpacity(0.15),
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(20.r),
                         border: Border.all(
                             color: _planColor(plan).withOpacity(0.4)),
                       ),
@@ -82,17 +83,17 @@ class ProfilePage extends GetView<ProfileController> {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 16),
+                    SizedBox(height: 16.h),
                     // Edit Profile button
                     OutlinedButton(
                       onPressed: () => Get.toNamed(AppRoutes.editProfile),
                       style: OutlinedButton.styleFrom(
                         side: const BorderSide(color: AppColors.divider),
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(12.r),
                         ),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 24, vertical: 10),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 24.w, vertical: 10.h),
                       ),
                       child: Text(
                         AppStrings.editProfile,
@@ -103,7 +104,7 @@ class ProfilePage extends GetView<ProfileController> {
                 );
               }).animate().fadeIn(duration: 400.ms),
 
-              const SizedBox(height: 32),
+              SizedBox(height: 32.h),
 
               // Settings sections
               _SettingsSection(
@@ -213,7 +214,7 @@ class ProfilePage extends GetView<ProfileController> {
                 ],
               ).animate().fadeIn(delay: 500.ms, duration: 400.ms),
 
-              const SizedBox(height: 40),
+              SizedBox(height: 40.h),
             ],
           ),
         ),
@@ -228,7 +229,7 @@ class ProfilePage extends GetView<ProfileController> {
       snackPosition: SnackPosition.BOTTOM,
       backgroundColor: AppColors.surfaceLight,
       colorText: AppColors.textPrimary,
-      margin: const EdgeInsets.all(16),
+      margin: EdgeInsets.all(16.w),
     );
   }
 
@@ -236,16 +237,16 @@ class ProfilePage extends GetView<ProfileController> {
     showModalBottomSheet(
       context: context,
       backgroundColor: AppColors.surface,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24.r)),
       ),
       builder: (_) => Padding(
-        padding: const EdgeInsets.all(24),
+        padding: EdgeInsets.all(24.w),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Text('Unit System', style: AppTypography.heading4),
-            const SizedBox(height: 16),
+            SizedBox(height: 16.h),
             ListTile(
               title: Text('Metric', style: AppTypography.body),
               leading: const Icon(Icons.check, color: AppColors.primary),
@@ -271,22 +272,22 @@ class ProfilePage extends GetView<ProfileController> {
     showModalBottomSheet(
       context: context,
       backgroundColor: AppColors.surface,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24.r)),
       ),
       builder: (_) => Padding(
-        padding: const EdgeInsets.all(24),
+        padding: EdgeInsets.all(24.w),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Text('Language', style: AppTypography.heading4),
-            const SizedBox(height: 16),
+            SizedBox(height: 16.h),
             for (final lang in ['English', 'Arabic', 'French'])
               ListTile(
                 title: Text(lang, style: AppTypography.body),
                 leading: lang == 'English'
                     ? const Icon(Icons.check, color: AppColors.primary)
-                    : const SizedBox(width: 24),
+                    : SizedBox(width: 24.w),
                 onTap: () {
                   Get.find<AppSettings>().setLanguage(
                     lang == 'English'
@@ -381,16 +382,16 @@ class _SettingsSection extends StatelessWidget {
           title.toUpperCase(),
           style: AppTypography.label.copyWith(letterSpacing: 1.5),
         ),
-        const SizedBox(height: 8),
+        SizedBox(height: 8.h),
         Container(
           decoration: BoxDecoration(
             color: AppColors.surface,
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(16.r),
             border: Border.all(color: AppColors.divider.withOpacity(0.5)),
           ),
           child: Column(children: items),
         ),
-        const SizedBox(height: 20),
+        SizedBox(height: 20.h),
       ],
     );
   }
@@ -417,13 +418,13 @@ class _SettingItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(16),
+      borderRadius: BorderRadius.circular(16.r),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
         child: Row(
           children: [
-            Icon(icon, size: 20, color: titleColor ?? AppColors.textSecondary),
-            const SizedBox(width: 14),
+            Icon(icon, size: 20.w, color: titleColor ?? AppColors.textSecondary),
+            SizedBox(width: 14.w),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -435,7 +436,7 @@ class _SettingItem extends StatelessWidget {
                     ),
                   ),
                   if (subtitle != null) ...[
-                    const SizedBox(height: 2),
+                    SizedBox(height: 2.h),
                     Text(subtitle!, style: AppTypography.caption),
                   ],
                 ],
@@ -443,8 +444,8 @@ class _SettingItem extends StatelessWidget {
             ),
             if (trailing != null) trailing!,
             if (onTap != null && trailing == null)
-              const Icon(Icons.chevron_right_rounded,
-                  size: 20, color: AppColors.textSecondary),
+              Icon(Icons.chevron_right_rounded,
+                  size: 20.w, color: AppColors.textSecondary),
           ],
         ),
       ),

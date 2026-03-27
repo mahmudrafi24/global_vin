@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:global_vin/core/constants/app_colors.dart';
 import 'package:global_vin/core/constants/app_strings.dart';
 import 'package:global_vin/core/constants/app_typography.dart';
+import 'package:global_vin/core/widgets/core_screen_utils.dart';
 import 'package:global_vin/core/widgets/gradient_button.dart';
 import '../controllers/onboarding_controller.dart';
 
@@ -29,7 +30,7 @@ class OnboardingPage extends GetView<OnboardingController> {
                             .copyWith(color: AppColors.primary),
                       ),
                     )
-                  : const SizedBox(height: 48)),
+                  : SizedBox(height: 48.h)),
             ),
             // Pages
             Expanded(
@@ -60,7 +61,7 @@ class OnboardingPage extends GetView<OnboardingController> {
             ),
             // Dot indicators
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 24),
+              padding: EdgeInsets.symmetric(vertical: 24.h),
               child: Obx(
                 () => Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -68,14 +69,14 @@ class OnboardingPage extends GetView<OnboardingController> {
                     3,
                     (index) => AnimatedContainer(
                       duration: const Duration(milliseconds: 300),
-                      margin: const EdgeInsets.symmetric(horizontal: 4),
-                      width: controller.currentPage.value == index ? 24 : 8,
-                      height: 8,
+                      margin: EdgeInsets.symmetric(horizontal: 4.w),
+                      width: controller.currentPage.value == index ? 24.w : 8.w,
+                      height: 8.w,
                       decoration: BoxDecoration(
                         color: controller.currentPage.value == index
                             ? AppColors.primary
                             : AppColors.surfaceLight,
-                        borderRadius: BorderRadius.circular(4),
+                        borderRadius: BorderRadius.circular(4.r),
                       ),
                     ),
                   ),
@@ -84,7 +85,7 @@ class OnboardingPage extends GetView<OnboardingController> {
             ),
             // Button
             Padding(
-              padding: const EdgeInsets.fromLTRB(24, 0, 24, 32),
+              padding: EdgeInsets.fromLTRB(24.w, 0, 24.w, 32.h),
               child: Obx(
                 () => GradientButton(
                   text: controller.currentPage.value == 2
@@ -117,19 +118,19 @@ class _OnboardingItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 32),
+      padding: EdgeInsets.symmetric(horizontal: 32.w),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            width: 160,
-            height: 160,
+            width: 160.w,
+            height: 160.w,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: iconColor.withOpacity(0.1),
               border: Border.all(color: iconColor.withOpacity(0.3)),
             ),
-            child: Icon(icon, size: 80, color: iconColor),
+            child: Icon(icon, size: 80.w, color: iconColor),
           )
               .animate()
               .scale(
@@ -139,13 +140,13 @@ class _OnboardingItem extends StatelessWidget {
                 curve: Curves.easeOutBack,
               )
               .fadeIn(duration: 400.ms),
-          const SizedBox(height: 48),
+          SizedBox(height: 48.h),
           Text(
             title,
             style: AppTypography.heading1,
             textAlign: TextAlign.center,
           ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
-          const SizedBox(height: 16),
+          SizedBox(height: 16.h),
           Text(
             subtitle,
             style: AppTypography.body.copyWith(height: 1.6),

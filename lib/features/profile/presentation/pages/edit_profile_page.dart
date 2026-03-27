@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:global_vin/core/constants/app_colors.dart';
 import 'package:global_vin/core/constants/app_strings.dart';
 import 'package:global_vin/core/constants/app_typography.dart';
+import 'package:global_vin/core/widgets/core_screen_utils.dart';
 import 'package:global_vin/core/widgets/gradient_button.dart';
 import '../controllers/profile_controller.dart';
 
@@ -28,7 +29,7 @@ class EditProfilePage extends GetView<ProfileController> {
         ),
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(20),
+        padding: EdgeInsets.all(20.w),
         child: Column(
           children: [
             // Avatar
@@ -46,8 +47,8 @@ class EditProfilePage extends GetView<ProfileController> {
               child: Stack(
                 children: [
                   Container(
-                    width: 100,
-                    height: 100,
+                    width: 100.w,
+                    height: 100.w,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       gradient: AppColors.primaryGradient,
@@ -56,7 +57,7 @@ class EditProfilePage extends GetView<ProfileController> {
                       child: Text(
                         profile.initials,
                         style: AppTypography.heading1
-                            .copyWith(fontSize: 32, color: Colors.white),
+                            .copyWith(fontSize: 32.sp, color: Colors.white),
                       ),
                     ),
                   ),
@@ -64,16 +65,16 @@ class EditProfilePage extends GetView<ProfileController> {
                     bottom: 0,
                     right: 0,
                     child: Container(
-                      width: 32,
-                      height: 32,
+                      width: 32.w,
+                      height: 32.w,
                       decoration: BoxDecoration(
                         color: AppColors.primary,
                         shape: BoxShape.circle,
                         border: Border.all(color: AppColors.background, width: 2),
                       ),
-                      child: const Icon(
+                      child: Icon(
                         Icons.camera_alt,
-                        size: 16,
+                        size: 16.w,
                         color: Colors.white,
                       ),
                     ),
@@ -81,12 +82,12 @@ class EditProfilePage extends GetView<ProfileController> {
                 ],
               ),
             ),
-            const SizedBox(height: 8),
+            SizedBox(height: 8.h),
             Text(
               'Change Photo',
               style: AppTypography.bodySmall.copyWith(color: AppColors.primary),
             ),
-            const SizedBox(height: 32),
+            SizedBox(height: 32.h),
 
             // Form fields
             _FormField(
@@ -94,21 +95,21 @@ class EditProfilePage extends GetView<ProfileController> {
               controller: nameController,
               icon: Icons.person_outline,
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: 16.h),
             _FormField(
               label: 'Email',
               controller: emailController,
               icon: Icons.email_outlined,
               keyboardType: TextInputType.emailAddress,
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: 16.h),
             _FormField(
               label: 'Phone Number',
               controller: phoneController,
               icon: Icons.phone_outlined,
               keyboardType: TextInputType.phone,
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: 16.h),
             _FormField(
               label: 'Country',
               controller: countryController,
@@ -116,7 +117,7 @@ class EditProfilePage extends GetView<ProfileController> {
               readOnly: true,
               onTap: () => _showCountryPicker(context, countryController),
             ),
-            const SizedBox(height: 40),
+            SizedBox(height: 40.h),
 
             // Save button
             GradientButton(
@@ -169,8 +170,8 @@ class EditProfilePage extends GetView<ProfileController> {
     showModalBottomSheet(
       context: context,
       backgroundColor: AppColors.surface,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24.r)),
       ),
       isScrollControlled: true,
       builder: (_) => DraggableScrollableSheet(
@@ -181,18 +182,18 @@ class EditProfilePage extends GetView<ProfileController> {
         builder: (_, scrollController) => Column(
           children: [
             Padding(
-              padding: const EdgeInsets.all(16),
+              padding: EdgeInsets.all(16.w),
               child: Column(
                 children: [
                   Container(
-                    width: 40,
-                    height: 4,
+                    width: 40.w,
+                    height: 4.h,
                     decoration: BoxDecoration(
                       color: AppColors.divider,
-                      borderRadius: BorderRadius.circular(2),
+                      borderRadius: BorderRadius.circular(2.r),
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  SizedBox(height: 16.h),
                   Text('Select Country', style: AppTypography.heading4),
                 ],
               ),
@@ -240,7 +241,7 @@ class _FormField extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(label, style: AppTypography.label),
-        const SizedBox(height: 8),
+        SizedBox(height: 8.h),
         TextField(
           controller: controller,
           keyboardType: keyboardType,
@@ -248,7 +249,7 @@ class _FormField extends StatelessWidget {
           onTap: onTap,
           style: AppTypography.body.copyWith(color: AppColors.textPrimary),
           decoration: InputDecoration(
-            prefixIcon: Icon(icon, size: 20, color: AppColors.textSecondary),
+            prefixIcon: Icon(icon, size: 20.w, color: AppColors.textSecondary),
             suffixIcon: readOnly
                 ? const Icon(Icons.arrow_drop_down,
                     color: AppColors.textSecondary)
