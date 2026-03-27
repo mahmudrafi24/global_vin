@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd:*)",
+      "Bash(mkdir -p lib/core/constants lib/core/theme lib/core/utils lib/core/widgets)",
+      "Bash(mkdir -p lib/features/splash/presentation/pages)",
+      "Bash(mkdir -p lib/features/onboarding/presentation/controllers lib/features/onboarding/presentation/pages)",
+      "Bash(mkdir -p lib/features/vin_decoder/data/mock lib/features/vin_decoder/domain/entities lib/features/vin_decoder/presentation/bindings lib/features/vin_decoder/presentation/controllers lib/features/vin_decoder/presentation/pages)",
+      "Bash(mkdir -p lib/features/recent_searches/data/datasources lib/features/recent_searches/domain/entities lib/features/recent_searches/presentation/controllers lib/features/recent_searches/presentation/widgets)",
+      "Bash(flutter pub:*)",
+      "Bash(flutter analyze:*)"
+    ]
+  }
+}
